@@ -61,6 +61,6 @@ internal fun CallableDescriptor.isInlineClassConstructorCall(): Boolean {
     return this is ConstructorDescriptor && this.constructedClass.isInline
 }
 
-fun MessageCollector.error(message: String) {
+internal fun MessageCollector.error(message: String) {
     this.report(CompilerMessageSeverity.ERROR, message)
 }
