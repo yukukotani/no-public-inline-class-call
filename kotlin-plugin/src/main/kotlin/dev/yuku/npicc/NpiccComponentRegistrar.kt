@@ -1,4 +1,4 @@
-package dev.yuku.nicc
+package dev.yuku.npicc
 
 import com.google.auto.service.AutoService
 import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys
@@ -9,9 +9,9 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.resolve.jvm.extensions.AnalysisHandlerExtension
 
 @AutoService(ComponentRegistrar::class)
-class NiccComponentRegistrar : ComponentRegistrar {
+class NpiccComponentRegistrar : ComponentRegistrar {
     override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
-        if (configuration[NiccConfigurationKeys.ENABLED] == false) {
+        if (configuration[NpiccConfigurationKeys.ENABLED] == false) {
             return
         }
 

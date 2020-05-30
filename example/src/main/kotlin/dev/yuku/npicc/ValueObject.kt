@@ -1,6 +1,6 @@
-package dev.yuku.nicc
+package dev.yuku.npicc
 
-import dev.yuku.nicc.test.TestObject
+import dev.yuku.npicc.test.TestObject
 
 inline class ValueObject(val value: Long) {
     companion object {

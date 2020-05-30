@@ -10,9 +10,9 @@ plugins {
 
 gradlePlugin {
     (plugins) {
-        register("no-inline-class-constructor") {
-            id = "dev.yuku.no-inline-class-constructor"
-            implementationClass = "dev.yuku.nicc.NiccGradlePlugin"
+        register("no-public-inline-class-call") {
+            id = "dev.yuku.no-public-inline-class-call"
+            implementationClass = "dev.yuku.npicc.NpiccGradlePlugin"
         }
     }
 }
@@ -46,12 +46,12 @@ tasks {
 
 afterEvaluate {
     publishing {
-        publications.create<MavenPublication>("no-inline-class-constructor") {
+        publications.create<MavenPublication>("no-public-inline-class-call") {
             artifact(tasks.getByName("shadowJar"))
             artifactId = rootProject.name
             pom {
-                description.set("Static code analysis for Kotlin")
-                name.set("no-inline-class-constructor")
+                description.set("Prohibiting public inline class constructor call.")
+                name.set("no-public-inline-class-call")
 //                url.set("https://arturbosch.github.io/detekt")
 //                licenses {
 //                    license {

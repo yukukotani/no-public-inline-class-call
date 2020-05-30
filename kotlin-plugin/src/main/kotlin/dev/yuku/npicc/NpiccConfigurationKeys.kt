@@ -1,7 +1,7 @@
-package dev.yuku.nicc
+package dev.yuku.npicc
 
 import org.jetbrains.kotlin.config.CompilerConfigurationKey
 
-object NiccConfigurationKeys {
+object NpiccConfigurationKeys {
     val ENABLED: CompilerConfigurationKey<Boolean> = CompilerConfigurationKey.create("enabled")
 }

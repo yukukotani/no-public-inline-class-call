@@ -6,16 +6,14 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.namespace == "dev.yuku.no-inline-class-constructor") {
-                useModule("dev.yuku:no-inline-class-constructor:${requested.version}")
+            if (requested.id.namespace == "dev.yuku.no-inline-class-call") {
+                useModule("dev.yuku:no-inline-class-call:${requested.version}")
             }
         }
     }
 }
 
-rootProject.name = "no-inline-class-constructor"
+rootProject.name = "no-public-inline-class-call"
 include("gradle-plugin")
 include("kotlin-plugin")
 include("example")
-
-//findProject(":kotlin-plugin")?.name = "kotlin-plugin"

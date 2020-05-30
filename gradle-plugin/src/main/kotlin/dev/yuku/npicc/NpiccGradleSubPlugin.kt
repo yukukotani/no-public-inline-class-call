@@ -1,4 +1,4 @@
-package dev.yuku.nicc
+package dev.yuku.npicc
 
 import com.google.auto.service.AutoService
 import org.gradle.api.Project
@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 @AutoService(KotlinGradleSubplugin::class)
-class NiccGradleSubPlugin : KotlinGradleSubplugin<AbstractCompile> {
+class NpiccGradleSubPlugin : KotlinGradleSubplugin<AbstractCompile> {
     override fun apply(
         project: Project,
         kotlinCompile: AbstractCompile,
@@ -19,8 +19,8 @@ class NiccGradleSubPlugin : KotlinGradleSubplugin<AbstractCompile> {
         androidProjectHandler: Any?,
         kotlinCompilation: KotlinCompilation<KotlinCommonOptions>?
     ): List<SubpluginOption> {
-        val extension = project.extensions.findByType(NiccGradleExtension::class.java)
-            ?: NiccGradleExtension()
+        val extension = project.extensions.findByType(NpiccGradleExtension::class.java)
+            ?: NpiccGradleExtension()
         return listOf(
             SubpluginOption(
                 key = "enabled", value = extension.enabled.toString()
@@ -29,19 +29,19 @@ class NiccGradleSubPlugin : KotlinGradleSubplugin<AbstractCompile> {
     }
 
     override fun getCompilerPluginId(): String {
-        return "no-inline-class-constructor"
+        return "no-public-inline-class-call"
     }
 
     override fun getPluginArtifact(): SubpluginArtifact {
         return SubpluginArtifact(
             groupId = "dev.yuku",
-            artifactId = "no-inline-class-constructor",
+            artifactId = "no-public-inline-class-call",
             version = "1.0-SNAPSHOT"
         )
     }
 
     override fun isApplicable(project: Project, task: AbstractCompile): Boolean {
-        return project.plugins.hasPlugin(NiccGradlePlugin::class.java)
+        return project.plugins.hasPlugin(NpiccGradlePlugin::class.java)
     }
 
 }

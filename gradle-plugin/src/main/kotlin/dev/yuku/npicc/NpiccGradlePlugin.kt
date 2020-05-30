@@ -1,13 +1,13 @@
-package dev.yuku.nicc
+package dev.yuku.npicc
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class NiccGradlePlugin : Plugin<Project> {
+class NpiccGradlePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.extensions.create(
-            "no-inline-class-constructor",
-            NiccGradleExtension::class.java
+            "no-public-inline-class-call",
+            NpiccGradleExtension::class.java
         )
     }
 

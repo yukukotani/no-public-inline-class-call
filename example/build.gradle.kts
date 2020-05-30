@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-    id("dev.yuku.no-inline-class-constructor") version "1.0-SNAPSHOT"
+    id("dev.yuku.no-public-inline-class-call") version "1.0-SNAPSHOT"
     kotlin("jvm")
 }
 

@@ -1,4 +1,4 @@
-package dev.yuku.nicc
+package dev.yuku.npicc
 
 import org.jetbrains.kotlin.analyzer.AnalysisResult
 import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSeverity
