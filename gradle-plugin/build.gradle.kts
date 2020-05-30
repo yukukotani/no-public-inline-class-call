@@ -4,17 +4,9 @@ plugins {
     kotlin("jvm")
     id("kotlin-kapt")
     id("java-gradle-plugin")
+    id("com.gradle.plugin-publish") version "0.12.0"
     id("com.github.johnrengelman.shadow") version "5.2.0"
     id("maven-publish")
-}
-
-gradlePlugin {
-    (plugins) {
-        register("no-public-inline-class-call") {
-            id = "dev.yuku.no-public-inline-class-call"
-            implementationClass = "dev.yuku.npicc.NpiccGradlePlugin"
-        }
-    }
 }
 
 repositories {
@@ -44,6 +36,23 @@ tasks {
     }
 }
 
+gradlePlugin {
+    (plugins) {
+        register("no-public-inline-class-call") {
+            id = "dev.yuku.no-public-inline-class-call"
+            displayName = "no-public-inline-class-call-plugin"
+            description = "Prohibiting public inline class constructor call."
+            implementationClass = "dev.yuku.npicc.NpiccGradlePlugin"
+        }
+    }
+}
+
+pluginBundle {
+    website = "https://github.com/Monchi/no-public-inline-class-call"
+    vcsUrl = "https://github.com/Monchi/no-public-inline-class-call"
+    tags = listOf("kotlin", "inline-class", "kotlin-compiler-plugin")
+}
+
 afterEvaluate {
     publishing {
         publications.create<MavenPublication>("no-public-inline-class-call") {
@@ -52,24 +61,6 @@ afterEvaluate {
             pom {
                 description.set("Prohibiting public inline class constructor call.")
                 name.set("no-public-inline-class-call")
-//                url.set("https://arturbosch.github.io/detekt")
-//                licenses {
-//                    license {
-//                        name.set("The Apache Software License, Version 2.0")
-//                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-//                        distribution.set("repo")
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id.set("Artur Bosch")
-//                        name.set("Artur Bosch")
-//                        email.set("arturbosch@gmx.de")
-//                    }
-//                }
-//                scm {
-//                    url.set("https://github.com/arturbosch/detekt")
-//                }
             }
         }
     }
