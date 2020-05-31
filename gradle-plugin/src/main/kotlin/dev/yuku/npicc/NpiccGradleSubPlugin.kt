@@ -36,7 +36,7 @@ class NpiccGradleSubPlugin : KotlinGradleSubplugin<AbstractCompile> {
         return SubpluginArtifact(
             groupId = "dev.yuku",
             artifactId = "no-public-inline-class-call",
-            version = "1.0-SNAPSHOT"
+            version = "0.1.0"
         )
     }
 
