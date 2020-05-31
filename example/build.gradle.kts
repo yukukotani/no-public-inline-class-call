@@ -19,7 +19,7 @@ dependencies {
 }
 
 `no-public-inline-class-call` {
-    severity = dev.yuku.npicc.NpiccSeverity.WARN
+   // severity = dev.yuku.npicc.NpiccSeverity.WARN
 }
 
 tasks {
