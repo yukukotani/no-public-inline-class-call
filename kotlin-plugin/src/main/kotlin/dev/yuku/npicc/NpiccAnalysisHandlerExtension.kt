@@ -20,8 +20,7 @@ import org.jetbrains.kotlin.resolve.jvm.extensions.AnalysisHandlerExtension
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-class NiccAnalysisHandlerExtension(private val log: MessageCollector) : AnalysisHandlerExtension {
-
+class NiccAnalysisHandlerExtension(private val log: MessageCollector, private val severity: CompilerMessageSeverity) : AnalysisHandlerExtension {
 
     override fun analysisCompleted(
         project: Project,
@@ -36,7 +35,7 @@ class NiccAnalysisHandlerExtension(private val log: MessageCollector) : Analysis
     private fun checkFile(file: KtFile, context: BindingContext) {
         val callExpressions = file.collectDescendantsOfType<KtCallExpression>()
         callExpressions.filter { isExternalCall(it, context) }.forEach {
-            log.error("External inline class constructor call: ${it.sourcePosition()}")
+            logExternalCall(it)
         }
     }
 
@@ -51,6 +50,10 @@ class NiccAnalysisHandlerExtension(private val log: MessageCollector) : Analysis
 
         return !containingClass.isEquivalentTo(calledClass)
     }
+
+    private fun logExternalCall(expression: KtCallExpression) {
+        log.report(severity, "External inline class constructor call is detected: ${expression.sourcePosition()}")
+    }
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -59,8 +62,4 @@ internal fun CallableDescriptor.isInlineClassConstructorCall(): Boolean {
         returns(true) implies (this@isInlineClassConstructorCall is ConstructorDescriptor)
     }
     return this is ConstructorDescriptor && this.constructedClass.isInline
-}
-
-internal fun MessageCollector.error(message: String) {
-    this.report(CompilerMessageSeverity.ERROR, message)
 }

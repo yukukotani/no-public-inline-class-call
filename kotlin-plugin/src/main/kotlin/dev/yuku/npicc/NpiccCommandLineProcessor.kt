@@ -8,19 +8,19 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 
 @AutoService(CommandLineProcessor::class)
 class NpiccCommandLineProcessor : CommandLineProcessor {
-    override val pluginId = "no-inline-class-constructor"
+    override val pluginId = "no-public-inline-class-call"
     override val pluginOptions: Collection<AbstractCliOption> = listOf(
         CliOption(
-            optionName = "enabled",
-            valueDescription = "<true/false>",
-            description = "whether plugin is enabled",
+            optionName = "severity",
+            valueDescription = "<error/warn>",
+            description = "severity",
             required = false
         )
     )
 
     override fun processOption(option: AbstractCliOption, value: String, configuration: CompilerConfiguration) {
         when (option.optionName) {
-            "enabled" -> configuration.put(NpiccConfigurationKeys.ENABLED, value.toBoolean())
+            "severity" -> configuration.put(NpiccConfigurationKeys.SEVERITY, value)
             else -> error("unexpected option: ${option.optionName}")
         }
     }

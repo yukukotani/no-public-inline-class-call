@@ -23,7 +23,7 @@ class NpiccGradleSubPlugin : KotlinGradleSubplugin<AbstractCompile> {
             ?: NpiccGradleExtension()
         return listOf(
             SubpluginOption(
-                key = "enabled", value = extension.enabled.toString()
+                key = "severity", value = extension.severity.name
             )
         )
     }

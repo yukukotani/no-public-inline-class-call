@@ -18,6 +18,10 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 }
 
+`no-public-inline-class-call` {
+    severity = dev.yuku.npicc.NpiccSeverity.WARN
+}
+
 tasks {
     compileKotlin {
         kotlinOptions.freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
